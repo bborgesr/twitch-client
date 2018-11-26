@@ -12,16 +12,16 @@ export default class Index extends React.Component {
     this.handleLimitChange = this.handleLimitChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleRouteChange = this.handleRouteChange.bind(this)
-    this.fetchStream = this.fetchStream.bind(this)
+    this.fetchStreams = this.fetchStreams.bind(this)
     Router.events.on('routeChangeStart', this.handleRouteChange)
   }
 
   static async getInitialProps(context) {
-    const search = context.query.search === "" ? "''" : context.query.search
+    const search = context.query.search || "''"
     return { search }
   }
 
-  fetchStream(search, limit = this.state.limit) {
+  fetchStreams(search, limit = this.state.limit) {
     fetch(`https://api.twitch.tv/kraken/search/streams?query=${search}&limit=${limit}`, {
       headers: { "Client-ID": "o3ldtpya38q9y4y5y6rg98gqycz3pt" }
     }).then(res => res.json())
@@ -29,15 +29,17 @@ export default class Index extends React.Component {
   }
 
   handleRouteChange(url) {
-    const search = url.substring(url.lastIndexOf("=") + 1)
-    this.fetchStream(search)
+    if (url.indexOf("search") !== -1) {
+      const search = url.substring(url.lastIndexOf("=") + 1)
+      this.fetchStreams(search)
+    }
   }
 
   componentDidMount() {
     const limit = localStorage.getItem('_limit')
-    if (limit) this.setState({limit: limit})
+    if (limit) this.setState({ limit: limit })
     const search = this.props.search || this.state.search || "''"
-    this.fetchStream(search, limit)
+    this.fetchStreams(search, limit || this.state.limit)
   }
 
   componentDidUpdate() {
@@ -55,7 +57,7 @@ export default class Index extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     const search = this.state.search || "''"
-    this.fetchStream(search)
+    this.fetchStreams(search)
     const href = `/?search=${search}`
     Router.push(href, href, { shallow: true })
   }
@@ -64,33 +66,38 @@ export default class Index extends React.Component {
     const streams = this.state.streams
     return (
       <Layout>
+        <p className="title">A minimal twitch client</p>
         <form onSubmit={this.handleSubmit}>
-          <label>
+          <label className="searchLabel">
             <input
               type="text"
               placeholder="Search for streams"
               value={this.state.search}
               onChange={this.handleSearchChange} />
           </label>
-          <input
-            type="number"
-            min="1"
-            max="100"
-            value={this.state.limit}
-            onChange={this.handleLimitChange} />
-          <input type="submit" value="Submit" />
+          <label className="resultsLabel"># results
+            <input
+              type="number"
+              min="1"
+              max="100"
+              value={this.state.limit}
+              onChange={this.handleLimitChange} />
+          </label>
+          <label className="submitLabel">
+            <input type="submit" value="Search" />
+          </label>
         </form>
-        <ul>
+        <div className="results">
           {streams.map((stream) => (
-            <li key={stream._id}>
-              <p>{stream.channel.status}</p>
-              <Link as={`/c/${stream.channel.name}`} href={`/stream?channel=${stream.channel.name}`}>
-                <img src={stream.preview.medium} alt="stream" />
+            <div className="stream">
+              <Link as={`/channel/${stream.channel.name}`} href={`/channel?name=${stream.channel.name}`}>
+                <img className="thumbnail" src={stream.preview.medium} alt="stream" />
               </Link>
-            </li>
+              <p className="title">{stream.channel.status}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       </Layout>
-    );
+    )
   }
 }

@@ -1,4 +1,3 @@
-
 const layoutStyle = {
   margin: 20,
   padding: 20
