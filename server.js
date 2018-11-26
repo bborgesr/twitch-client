@@ -5,14 +5,11 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-app.prepare()
-.then(() => {
+app.prepare().then(() => {
   const server = express()
 
-  server.get('/c/:channel', (req, res) => {
-      const actualPage = '/channel'
-      const queryParams = { channel: req.params.channel }
-      app.render(req, res, actualPage, queryParams)
+  server.get('/channel/:name', (req, res) => {
+    app.render(req, res, '/channel', { name: req.params.name })
   })
 
   server.get('*', (req, res) => {
@@ -23,8 +20,7 @@ app.prepare()
     if (err) throw err
     console.log('> Ready on http://localhost:3000')
   })
-})
-.catch((ex) => {
+}).catch((ex) => {
   console.error(ex.stack)
   process.exit(1)
 })

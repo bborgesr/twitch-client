@@ -9986,14 +9986,14 @@ function (_React$Component) {
     _this.handleLimitChange = _this.handleLimitChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleRouteChange = _this.handleRouteChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.fetchStream = _this.fetchStream.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.fetchStreams = _this.fetchStreams.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     next_router__WEBPACK_IMPORTED_MODULE_3___default.a.events.on('routeChangeStart', _this.handleRouteChange);
     return _this;
   }
 
   _createClass(Index, [{
-    key: "fetchStream",
-    value: function fetchStream(search) {
+    key: "fetchStreams",
+    value: function fetchStreams(search) {
       var _this2 = this;
 
       var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.state.limit;
@@ -10012,8 +10012,10 @@ function (_React$Component) {
   }, {
     key: "handleRouteChange",
     value: function handleRouteChange(url) {
-      var search = url.substring(url.lastIndexOf("=") + 1);
-      this.fetchStream(search);
+      if (url.indexOf("search") !== -1) {
+        var search = url.substring(url.lastIndexOf("=") + 1);
+        this.fetchStreams(search);
+      }
     }
   }, {
     key: "componentDidMount",
@@ -10023,7 +10025,7 @@ function (_React$Component) {
         limit: limit
       });
       var search = this.props.search || this.state.search || "''";
-      this.fetchStream(search, limit);
+      this.fetchStreams(search, limit || this.state.limit);
     }
   }, {
     key: "componentDidUpdate",
@@ -10049,7 +10051,7 @@ function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var search = this.state.search || "''";
-      this.fetchStream(search);
+      this.fetchStreams(search);
       var href = "/?search=".concat(search);
       next_router__WEBPACK_IMPORTED_MODULE_3___default.a.push(href, href, {
         shallow: true
@@ -10059,32 +10061,45 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var streams = this.state.streams;
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Splash_js__WEBPACK_IMPORTED_MODULE_5__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Splash_js__WEBPACK_IMPORTED_MODULE_5__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+        className: "title"
+      }, "A minimal twitch client"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
         onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+        className: "searchLabel"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "text",
         placeholder: "Search for streams",
         value: this.state.search,
         onChange: this.handleSearchChange
-      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+        className: "resultsLabel"
+      }, "# results", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "number",
         min: "1",
         max: "100",
         value: this.state.limit,
         onChange: this.handleLimitChange
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+        className: "submitLabel"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "submit",
-        value: "Submit"
-      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", null, streams.map(function (stream) {
-        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
-          key: stream._id
-        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, stream.channel.status), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-          as: "/c/".concat(stream.channel.name),
-          href: "/stream?channel=".concat(stream.channel.name)
+        value: "Search"
+      }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "results"
+      }, streams.map(function (stream) {
+        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+          className: "stream"
+        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+          as: "/channel/".concat(stream.channel.name),
+          href: "/channel?name=".concat(stream.channel.name)
         }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+          className: "thumbnail",
           src: stream.preview.medium,
           alt: "stream"
-        })));
+        })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+          className: "title"
+        }, stream.channel.status));
       })));
     }
   }], [{
@@ -10098,7 +10113,7 @@ function (_React$Component) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                search = context.query.search === "" ? "''" : context.query.search;
+                search = context.query.search || "''";
                 return _context.abrupt("return", {
                   search: search
                 });

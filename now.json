@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "alias": "twitch-client-bborgesr.now.sh",
+  "builds": [
+    { "src": "package.json", "use": "@now/next" }
+  ]
+}
