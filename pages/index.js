@@ -2,7 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import Router from 'next/router'
 import fetch from 'isomorphic-unfetch'
-import Layout from '../components/Splash.js'
+import Layout from '../components/Layout.js'
+import "../style.css"
 
 export default class Index extends React.Component {
   constructor(props) {
@@ -75,7 +76,8 @@ export default class Index extends React.Component {
               value={this.state.search}
               onChange={this.handleSearchChange} />
           </label>
-          <label className="resultsLabel"># results
+          <br />
+          <label className="resultsLabel">How many results?
             <input
               type="number"
               min="1"
@@ -91,7 +93,7 @@ export default class Index extends React.Component {
           {streams.map((stream) => (
             <div className="stream">
               <Link as={`/channel/${stream.channel.name}`} href={`/channel?name=${stream.channel.name}`}>
-                <img className="thumbnail" src={stream.preview.medium} alt="stream" />
+                <img className="thumbnail" src={stream.preview.large} alt="stream" />
               </Link>
               <p className="title">{stream.channel.status}</p>
             </div>

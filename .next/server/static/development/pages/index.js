@@ -93,9 +93,9 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "./components/Splash.js":
+/***/ "./components/Layout.js":
 /*!******************************!*\
-  !*** ./components/Splash.js ***!
+  !*** ./components/Layout.js ***!
   \******************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -105,14 +105,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-var layoutStyle = {
-  margin: 20,
-  padding: 20
-};
 
 var Layout = function Layout(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: layoutStyle
+    className: "parent"
   }, props.children);
 };
 
@@ -140,7 +136,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! isomorphic-unfetch */ "isomorphic-unfetch");
 /* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _components_Splash_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Splash.js */ "./components/Splash.js");
+/* harmony import */ var _components_Layout_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Layout.js */ "./components/Layout.js");
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../style.css */ "./style.css");
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_6__);
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -164,6 +162,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 
 
 
@@ -266,7 +265,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var streams = this.state.streams;
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Splash_js__WEBPACK_IMPORTED_MODULE_5__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Layout_js__WEBPACK_IMPORTED_MODULE_5__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
         className: "title"
       }, "A minimal twitch client"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
         onSubmit: this.handleSubmit
@@ -277,9 +276,9 @@ function (_React$Component) {
         placeholder: "Search for streams",
         value: this.state.search,
         onChange: this.handleSearchChange
-      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
         className: "resultsLabel"
-      }, "# results", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      }, "How many results?", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "number",
         min: "1",
         max: "100",
@@ -300,7 +299,7 @@ function (_React$Component) {
           href: "/channel?name=".concat(stream.channel.name)
         }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
           className: "thumbnail",
-          src: stream.preview.medium,
+          src: stream.preview.large,
           alt: "stream"
         })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
           className: "title"
@@ -339,6 +338,17 @@ function (_React$Component) {
 
   return Index;
 }(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./style.css":
+/*!*******************!*\
+  !*** ./style.css ***!
+  \*******************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
 
 

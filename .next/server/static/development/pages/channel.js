@@ -93,9 +93,9 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "./components/Splash.js":
+/***/ "./components/Layout.js":
 /*!******************************!*\
-  !*** ./components/Splash.js ***!
+  !*** ./components/Layout.js ***!
   \******************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -105,14 +105,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-var layoutStyle = {
-  margin: 20,
-  padding: 20
-};
 
 var Layout = function Layout(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: layoutStyle
+    className: "parent"
   }, props.children);
 };
 
@@ -134,9 +130,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_Splash_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Splash.js */ "./components/Splash.js");
+/* harmony import */ var _components_Layout_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Layout.js */ "./components/Layout.js");
 /* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! isomorphic-unfetch */ "isomorphic-unfetch");
 /* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../style.css */ "./style.css");
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
@@ -161,6 +159,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 
 
 
@@ -214,13 +213,19 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Splash_js__WEBPACK_IMPORTED_MODULE_2__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("iframe", {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Layout_js__WEBPACK_IMPORTED_MODULE_2__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "iframeWrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("iframe", {
         src: "https://player.twitch.tv/?channel=".concat(this.props.name.toLowerCase())
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
         className: "title"
-      }, this.state.stream.data[0].title), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "By: ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      }, this.state.stream.data[0].title), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "authorWrapper"
+      }, "By: ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
         className: "author"
-      }, this.props.name)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "Live viewers: ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      }, this.props.name)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "viewerWrapper"
+      }, "Live viewers: ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
         className: "viewers"
       }, this.state.stream.data[0].viewer_count)));
     }
@@ -268,6 +273,17 @@ function (_React$Component) {
 
   return Stream;
 }(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./style.css":
+/*!*******************!*\
+  !*** ./style.css ***!
+  \*******************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
 
 

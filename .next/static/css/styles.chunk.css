@@ -1,0 +1,115 @@
+/* Globsl styling */
+div.parent {
+  margin: 20px;
+  padding: 20px;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+}
+
+p.title {
+  font-size: 28px;
+  font-variant: small-caps;
+}
+
+/* Styling for index.js */
+label.searchLabel input {
+  font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-bottom: 3px solid #8da389;
+}
+
+label.resultsLabel {
+  float: left;
+}
+
+label.resultsLabel input {
+  font-size: 16px;
+  padding: 5px;
+  margin-left: 10px;
+  border-radius: 10%;
+  border: none;
+  background-color: #e9e9e9;
+}
+
+label.submitLabel {
+  float: right;
+}
+
+label.submitLabel input {
+  font-size: 16px;
+  padding: 10px;
+  border: 1.5px solid #8da389;
+  border-radius: 10%;
+  background-color: #e4e4d9;
+}
+
+div.results {
+  margin: 100px 0px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+div.stream img.thumbnail {
+  width: 100%;
+}
+
+div.stream p.title {
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Styling for channel.js */
+.iframeWrapper {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+}
+
+iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.authorWrapper {
+  float: left;
+  text-align: center;
+  padding: 16px;
+  margin: 16px;
+  border: 3px solid #8da389;
+  border-radius: 40%;
+  background-color: #e4e4d9;
+  box-shadow: 0 0 5px 2px rgba(0,0,0,.35);
+}
+
+.author {
+  text-decoration: underline double #ba9499;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.viewerWrapper {
+  float: right;
+  padding: 16px;
+  margin: 16px;
+  border: 3px solid #ba9499;
+  border-radius: 10%;
+  background-color: #d9c4c6;
+  box-shadow: 0 0 5px 2px rgba(0,0,0,.35);
+}
+
+.viewers {
+  text-decoration: underline double #8da389;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+/*# sourceMappingURL=styles.chunk.css.map*/

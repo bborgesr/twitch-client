@@ -1,5 +1,6 @@
-import Layout from '../components/Splash.js'
+import Layout from '../components/Layout.js'
 import fetch from 'isomorphic-unfetch'
+import "../style.css"
 
 export default class Stream extends React.Component {
   constructor(props) {
@@ -35,10 +36,13 @@ export default class Stream extends React.Component {
   render() {
     return (
       <Layout>
-        <iframe src={`https://player.twitch.tv/?channel=${this.props.name.toLowerCase()}`}></iframe>
+        <div className="iframeWrapper">
+          <iframe src={`https://player.twitch.tv/?channel=${this.props.name.toLowerCase()}`}></iframe>
+        </div>
         <p className="title">{this.state.stream.data[0].title}</p>
-        <span>By: <span className="author">{this.props.name}</span></span>
-        <span>Live viewers: <span className="viewers">{this.state.stream.data[0].viewer_count}</span></span>
+        <hr />
+        <span className="authorWrapper">By: <span className="author">{this.props.name}</span></span>
+        <span className="viewerWrapper">Live viewers: <span className="viewers">{this.state.stream.data[0].viewer_count}</span></span>
       </Layout>
     )
   }
